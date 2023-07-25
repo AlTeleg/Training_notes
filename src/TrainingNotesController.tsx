@@ -3,7 +3,7 @@ import Note, { Training } from "./Note";
 
 export default function TrainingNotesController(): JSX.Element {
   const [trainings, setTrainings] = useState<Training[]>([]);
-  const [date, setDate] = useState('01.01.2000')
+  const [date, setDate] = useState(new Date().toString())
   const [range, setRange] = useState(0)
 
   const inputDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,9 +28,11 @@ export default function TrainingNotesController(): JSX.Element {
     }
     else {
       trainings.sort((a, b) => new Date(a.date).valueOf() - new Date(b.date).valueOf())
+      if (date)
       setTrainings(prevState =>[...prevState, {date: new Date(date).toLocaleDateString(), range: range}])
     }
     setRange(0);
+    console.log(new Date(new Date().toLocaleDateString()).toLocaleDateString())
   }
 
   const editNote = (event: React.MouseEvent<HTMLImageElement>) => {

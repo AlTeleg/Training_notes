@@ -1,38 +1,74 @@
-.App {
-  text-align: center;
+#root {
+    display: flex;
+    justify-content: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.notes-div {
+    width: 1200px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.input-form {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.notes-titles {
+    width:100%;
+    display: flex;
+    justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
+.note-info {
+    margin: 5px;
+    margin-left: 35px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h3 {
+    width: 205px;
+    text-align: center;
+}
+
+h3:first-child {
+    width: 156.41px;
+}
+
+.form-button {
+    width: 205px;
+    border-radius: 3px;
+    background-color: rgb(255, 255, 255);
+    border: 1px black solid;
+
+}
+
+.form-button:hover {
+    background-color: rgb(240, 240, 240);
+    cursor: pointer;
+    border: 2px black solid;
+
+}
+
+.note-list {
+    box-sizing: border-box;
+    border: 1px black solid;
+}
+
+.note {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 5px;
+}
+
+.note-edit {
+    cursor: pointer;
+}
+
+.note-delete {
+    cursor: pointer;
+}
+
+.note_actions {
+    width: 205px;
+    display: flex;
+    justify-content: space-around;
 }

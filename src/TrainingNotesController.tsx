@@ -37,7 +37,7 @@ export default function TrainingNotesController(): JSX.Element {
   const editNote = (event: React.MouseEvent<HTMLImageElement>) => {
     event.preventDefault();
     let stringDate = event.currentTarget.parentElement?.parentElement?.firstChild?.textContent!
-    let stringRange = event.currentTarget.parentElement?.parentElement?.children[1].textContent!
+    let stringRange = event.currentTarget.parentElement?.parentElement?.children[1].textContent
     setDate(stringDate.split(".").reverse().join("-"))
     setRange(Number(stringRange))
     deleteNote(event)

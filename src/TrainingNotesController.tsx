@@ -46,7 +46,7 @@ export default function TrainingNotesController(): JSX.Element {
   const deleteNote = (event: React.MouseEvent<HTMLImageElement>) => {
     event.preventDefault();
     let stringDate = event.currentTarget.parentElement?.parentElement?.firstChild?.textContent
-    let index = trainings.indexOf(trainings.find(training => training.date === stringDate)!)
+    let index = trainings.indexOf(trainings.find(training => new Date(training.date).toLocaleDateString() === stringDate)!)
     trainings.splice(index, 1)
     setTrainings(trainings => [...trainings])
   }

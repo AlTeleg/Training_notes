@@ -19,7 +19,7 @@ export default function Note ({training, onEdit, onDelete}: NoteProps): JSX.Elem
 
   return (
     <div className='note'>
-        <p className='note-info'>{training.date}</p>
+        <p className='note-info'>{new Date(training.date).toLocaleDateString()}</p>
         <p className='note-info'>{training.range}</p>
         <div className='note_actions'>
           <img onClick={onEdit} className='note-edit' src={edit} alt="edit" />

@@ -3,7 +3,7 @@ import Note, { Training } from "./Note";
 
 export default function TrainingNotesController(): JSX.Element {
   const [trainings, setTrainings] = useState<Training[]>([]);
-  const [date, setDate] = useState(new Date().toString())
+  const [date, setDate] = useState(new Date().toDateString())
   const [range, setRange] = useState(0)
 
   const inputDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,36 +20,35 @@ export default function TrainingNotesController(): JSX.Element {
 
   const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    let training = trainings.find(training => training.date === new Date(date).toLocaleDateString())
+    let training = trainings.find(training => training.date === date)
     if (training) {
       let index = trainings.indexOf(training)
       trainings[index].range += range
       setTrainings(trainings => [...trainings])
     }
     else {
-      trainings.sort((a, b) => new Date(a.date).valueOf() - new Date(b.date).valueOf())
-      if (date)
-      setTrainings(prevState =>[...prevState, {date: new Date(date).toLocaleDateString(), range: range}])
+      if (date) {
+        setTrainings(prevState =>[...prevState, {date: date, range: range}])
+      }
     }
     setRange(0);
-    console.log(new Date(new Date().toLocaleDateString()).toLocaleDateString())
   }
 
   const editNote = (event: React.MouseEvent<HTMLImageElement>) => {
     event.preventDefault();
     let stringDate = event.currentTarget.parentElement?.parentElement?.firstChild?.textContent!
     let stringRange = event.currentTarget.parentElement?.parentElement?.children[1].textContent!
-    setDate(stringDate)
+    setDate(stringDate.split(".").reverse().join("-"))
     setRange(Number(stringRange))
+    deleteNote(event)
   }
 
   const deleteNote = (event: React.MouseEvent<HTMLImageElement>) => {
     event.preventDefault();
     let stringDate = event.currentTarget.parentElement?.parentElement?.firstChild?.textContent
     let index = trainings.indexOf(trainings.find(training => training.date === stringDate)!)
-    trainings.splice(index, 1).sort((a, b) => new Date(a.date).valueOf() - new Date(b.date).valueOf())
-    event.currentTarget.parentElement?.parentElement?.remove()
-    setTrainings(trainings)
+    trainings.splice(index, 1)
+    setTrainings(trainings => [...trainings])
   }
 
   return (

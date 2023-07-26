@@ -72,7 +72,7 @@ export default function TrainingNotesController(): JSX.Element {
         </div>
         <div className='note-list'>
           {trainings
-          .sort((a, b) => new Date(a.date).valueOf() - new Date(b.date).valueOf())
+          .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
           .map((t, id) =>
             <Note training={t} onEdit={editNote} onDelete={deleteNote} key={id} />,
           )}
